@@ -1,0 +1,16 @@
+.user-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-details img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.repo {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    border: 1px solid #ccc;
+}

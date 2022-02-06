@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github API Search</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="./scripts/script.js"></script>
+</head>
+<body>
+    <h2>Github API Search</h2>
+        <div class="app">
+            <input type="search" name="Search Box" id="search-field" placeholder="Enter your Github Username">
+            <input type="button" value="Search" id="search-btn">
+            
+            <div class="user-details">
+                <div class="user-details__avatar">
+                    <img src="" alt="">
+                </div>
+                <div class="user-details__info">
+                    <h3 class="user-details__name"></h3>
+                    <p class="user-details__bio"></p>
+                </div>
+            </div>
+
+            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg mx-6">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-x font-medium text-gray-500 uppercase tracking-wider">
+                                <div class="flex">
+                                    <h2>Name</h2>
+                                    <button class="sort-btn__name bg-gray-200 ml-2 rounded-full px-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-x font-medium text-gray-500 uppercase tracking-wider">
+                                <div class="flex">
+                                    <h2>Stars</h2>
+                                    <button class="sort-btn__stars bg-gray-200 ml-2 rounded-full px-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </th>
+                            <!-- <th scope="col" class="px-6 py-3 text-left text-x font-medium text-gray-500 uppercase tracking-wider">Stars</th> -->
+                            <th scope="col" class="px-6 py-3 text-left text-x font-medium text-gray-500 uppercase tracking-wider">Forks</th>
+                            <th scope="col" class="px-6 py-3 text-left text-x font-medium text-gray-500 uppercase tracking-wider">Language</th>
+                            <th scope="col" class="px-6 py-3 text-left text-x font-medium text-gray-500 uppercase tracking-wider">Last Updated</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-rows bg-white divide-y divide-gray-200">
+                        <!-- <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, dolores
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <div class="px-4 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800"> 5 </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800"> 10 </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> Javascript </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                1.2 Years ago
+                            </td>
+                          </tr> -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- <div class="repo">
+                <h3 class="repo__name">🧻 Sort</h3>
+                <p class="repo__stars">⭐ Sort</p>
+                <p class="repo__forks">🍴 Sort</p>
+                <p class="repo__language">🤖 Sort</p>
+            </div>
+            <div class="repo-container">
+            </div> -->
+
+        </div>
+</body>
+</html>
