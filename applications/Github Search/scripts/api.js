@@ -5,7 +5,6 @@ const github = {
         try {
             const response = await fetch(`https://api.github.com/users/${username}`, {
                 headers: {
-                    'Authorization': 'token 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'
             }
         });
             return await response.json();
@@ -19,7 +18,6 @@ const github = {
         try {
             const response = await fetch(`https://api.github.com/users/${username}/repos`, {
                 headers: {
-                    'Authorization': 'token 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'
             }
         });
             return await response.json();

@@ -9,9 +9,18 @@ const application = {
             metaData: []
         },
         sortedData: {
-            byName: null,
-            byStars: null,
-            byForks: null,
+            byName: {
+                asc: null,
+                desc: null
+            },
+            byStars: {
+                asc: null,
+                desc: null
+            },
+            byForks: {
+                asc: null,
+                desc: null
+            },
             byLanguage: null,
             byLastUpdated: null,
         },
@@ -23,10 +32,13 @@ const application = {
 
     initialize() {
         const searchBar = document.querySelector('#search-field');
-        const searchButton = document.querySelector('#search-btn');
 
-        searchButton.addEventListener('click', async () => {
+        searchBar.addEventListener('keyup', async (event) => {
             const searchTerm = searchBar.value || 'winoffrg';
+            
+            if (event.keyCode !== 13) {
+                return;
+            }
             
             if(this.stateData.loading) {
                 console.log("Please wait while the data is still loading ...");
@@ -53,16 +65,24 @@ const application = {
         },
 
         userData(data) {
-            const userAvatar = document.querySelector('.user-details__avatar > img');
+            const userAvatar = document.querySelector('.user-details__avatar');
             const userName = document.querySelector('.user-details__name');
-            const userDetails = document.querySelector('.user-details__bio');
+            const userBio = document.querySelector('.user-details__bio');
+            const userId = document.querySelector('.user-details__link');
+            const userDetails = document.querySelector('.user-details');
 
             userAvatar.src = data.avatar_url;
             userName.innerHTML = data.name;
-            userDetails.innerHTML = data.bio;
+            userBio.innerHTML = data.bio;
+            userId.href = data.html_url;
+            userDetails.classList.remove('hidden');
         },
 
         metaData(data) {
+
+            if(!data) {
+                return;
+            }
 
             let repos = '';
 
@@ -107,37 +127,96 @@ const application = {
 
     setControls() {
         
-        const buttons = ['sort-btn__name', 'sort-btn__stars'];
+        const buttons = ['sort-btn__name', 'sort-btn__stars', 'sort-btn__forks'];
         const buttonReference = buttons.map(button => document.querySelector(`.${button}`));
         
         buttonReference[0].addEventListener('click', () => {
-            this.menuLogic.sortBy('byName');
+            let order = null;
+
+            if(buttonReference[0].classList.contains('asc')) {
+                order = 'asc';
+                buttonReference[0].classList.remove('asc');
+                buttonReference[0].classList.add('desc');
+            }
+            else {
+                order = 'desc';
+                buttonReference[0].classList.remove('desc');
+                buttonReference[0].classList.add('asc');
+            }
+
+            this.menuLogic.sortBy('byName', order);
         });
 
         buttonReference[1].addEventListener('click', () => {
-            this.menuLogic.sortBy('byStars');
+            let order = null;
+
+            if(buttonReference[1].classList.contains('asc')) {
+                order = 'asc';
+                buttonReference[1].classList.remove('asc');
+                buttonReference[1].classList.add('desc');
+            }
+            else {
+                order = 'desc';
+                buttonReference[1].classList.remove('desc');
+                buttonReference[1].classList.add('asc');
+            }
+
+            this.menuLogic.sortBy('byStars', order);
+        });
+        
+        buttonReference[2].addEventListener('click', () => {
+            let order = null;
+
+            if(buttonReference[2].classList.contains('asc')) {
+                order = 'asc';
+                buttonReference[2].classList.remove('asc');
+                buttonReference[2].classList.add('desc');
+            }
+            else {
+                order = 'desc';
+                buttonReference[2].classList.remove('desc');
+                buttonReference[2].classList.add('asc');
+            }
+
+            this.menuLogic.sortBy('byForks', order);
         });
     },
 
     menuLogic: {
         
         renderControls: {
-            toggleSortButton() {
-                console.log('Toggle Sort Button');
+            toggleSortButton(handler) {
+                const icons = document.querySelectorAll(`.${handler}-btn`);
+                
+                if(icons[0].classList.contains('hidden')) {
+                    icons[0].classList.remove('hidden');
+                    icons[1].classList.add('hidden');
+                }
+                else {
+                    icons[0].classList.add('hidden');
+                    icons[1].classList.remove('hidden');
+                }
             }
+            
         },
         
-        sortBy(handler) {
-            
+        sortBy(handler, order) {
             // Check Caching
-            if(application.stateData.sortedData[handler]) {
-                    
+
+            let renderData = null;
+
+            if(!application.stateData.sortedData[handler][order]) {
+                console.log('Cache Miss :: ' + handler);
+                renderData = applicationLogic.sorting.sortBy(handler, application.stateData.apiData.metaData, order);
+                application.stateData.sortedData[handler][order] = renderData;
+            }
+            else {
+                console.log('Cache Hit :: ' + handler);
+                renderData = application.stateData.sortedData[handler][order];
             }
 
-            // If not then cache it
-            applicationLogic.sorting.sortBy(handler);
-            this.renderControls.toggleSortButton();
-            console.log('Sorting by ...');
+            application.render.metaData(renderData);
+            this.renderControls.toggleSortButton(handler);
         }
     }
 }

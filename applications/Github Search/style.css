@@ -9,8 +9,21 @@
     border-radius: 50%;
 }
 
+.top-bar {
+    justify-content: space-between;
+}
+
 .repo {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     border: 1px solid #ccc;
+}
+
+button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.hidden {
+    display: none;
 }
