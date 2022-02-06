@@ -4,6 +4,7 @@
 - Sorting using Comparator
 - Caching Data in Memory
 - MVC Pattern
+- Tailwind CSS
 - Clean Code
 ## 📷 Screenshots
 
