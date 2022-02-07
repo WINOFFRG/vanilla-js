@@ -87,7 +87,7 @@ const logic = {
                 }
                 else if(monthGap > 0) {
                     if(monthGap === 1) {
-                        repo['updated_at'] = `${monthGap}.${dayGap} ago`;
+                        repo['updated_at'] = `${monthGap}.${dayGap} month ago`;
                     }
                     else {
                         repo['updated_at'] = `${monthGap} month's ago`;
