@@ -21,8 +21,14 @@ const application = {
                 asc: null,
                 desc: null
             },
-            byLanguage: null,
-            byLastUpdated: null,
+            byLanguage: {
+                asc: null,
+                desc: null
+            },
+            byLastUpdated: {
+                asc: null,
+                desc: null
+            },
         },
         filterBy: {
             languages: [],
@@ -49,6 +55,7 @@ const application = {
 
             this.stateData.apiData.userdata = await githubApi.fetchUserData(searchTerm);
             this.stateData.apiData.metaData = await githubApi.fetchMetaData(searchTerm);
+            this.stateData.apiData.metaData = await applicationLogic.parsing.parseData(this.stateData.apiData.metaData);
             
             this.render.isLoading(false);
 
@@ -127,59 +134,37 @@ const application = {
 
     setControls() {
         
-        const buttons = ['sort-btn__name', 'sort-btn__stars', 'sort-btn__forks'];
-        const buttonReference = buttons.map(button => document.querySelector(`.${button}`));
-        
-        buttonReference[0].addEventListener('click', () => {
-            let order = null;
+        const buttons = {
+            'sort-btn__name': 'byName',
+            'sort-btn__stars': 'byStars',
+            'sort-btn__forks': 'byForks',
+            'sort-btn__language': 'byLanguage',
+            'sort-btn__lastUpdated': 'byLastUpdated',
+        }
 
-            if(buttonReference[0].classList.contains('asc')) {
-                order = 'asc';
-                buttonReference[0].classList.remove('asc');
-                buttonReference[0].classList.add('desc');
-            }
-            else {
-                order = 'desc';
-                buttonReference[0].classList.remove('desc');
-                buttonReference[0].classList.add('asc');
-            }
+        Object.entries(buttons).forEach(([key, value]) => {
 
-            this.menuLogic.sortBy('byName', order);
+            const buttonReference = document.querySelector(`.${key}`);
+
+            buttonReference.addEventListener('click', async (event) => {
+
+                let order = null;
+
+                if(buttonReference.classList.contains('asc')) {
+                    order = 'asc';
+                    buttonReference.classList.remove('asc');
+                    buttonReference.classList.add('desc');
+                }
+                else {
+                    order = 'desc';
+                    buttonReference.classList.remove('desc');
+                    buttonReference.classList.add('asc');
+                }
+    
+                this.menuLogic.sortBy(value, order);
+            });
         });
 
-        buttonReference[1].addEventListener('click', () => {
-            let order = null;
-
-            if(buttonReference[1].classList.contains('asc')) {
-                order = 'asc';
-                buttonReference[1].classList.remove('asc');
-                buttonReference[1].classList.add('desc');
-            }
-            else {
-                order = 'desc';
-                buttonReference[1].classList.remove('desc');
-                buttonReference[1].classList.add('asc');
-            }
-
-            this.menuLogic.sortBy('byStars', order);
-        });
-        
-        buttonReference[2].addEventListener('click', () => {
-            let order = null;
-
-            if(buttonReference[2].classList.contains('asc')) {
-                order = 'asc';
-                buttonReference[2].classList.remove('asc');
-                buttonReference[2].classList.add('desc');
-            }
-            else {
-                order = 'desc';
-                buttonReference[2].classList.remove('desc');
-                buttonReference[2].classList.add('asc');
-            }
-
-            this.menuLogic.sortBy('byForks', order);
-        });
     },
 
     menuLogic: {
@@ -201,7 +186,6 @@ const application = {
         },
         
         sortBy(handler, order) {
-            // Check Caching
 
             let renderData = null;
 
