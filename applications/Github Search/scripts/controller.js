@@ -24,7 +24,20 @@ const logic = {
                 if(handler === 'byName' || handler === 'byLanguage' || handler === 'byLastUpdated') {
 
                     if(order === 'asc') {
-                        return arr;
+
+                        if(handler === 'byName') {
+                            return arr;
+                        }
+                        else {
+                            sortedData = Array.from(unsortedMap.entries()).sort(function (a, b) {
+                                let stringA = a[1].toLowerCase(), stringB = b[1].toLowerCase();
+                                if (stringA < stringB)
+                                    return -1;
+                                if (stringA > stringB)
+                                    return 1;
+                                return 0;
+                            });                            
+                        }
                     }
                     else {
                         sortedData = Array.from(unsortedMap.entries()).sort(function (a, b) {
