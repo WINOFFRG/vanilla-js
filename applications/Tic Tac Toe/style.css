@@ -1,0 +1,67 @@
+td > button {
+    border: 1px brown;
+    height: 150px;
+    width: 150px;
+    border-radius: 10%;
+    color: burlywood;
+    cursor: pointer;
+    font-size: 60px;
+    font-weight: 300;
+    margin: 5px;
+}
+
+.active {
+    background-color: burlywood;
+    color: black;
+}
+
+h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 48px;
+}
+
+#user-input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#checkbox {
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    margin-left: 100px;
+}
+
+#player1, #player2 {
+    width: 100px;
+    height: 30px;
+    margin-left: 10px;
+    border-radius: 20px;
+    font-size: large;
+    padding: 0 10px;
+}
+
+#submit {
+    width: 100px;
+    height: 35px;
+    border-radius: 20px;
+    cursor: pointer;
+    /* border: 1px black; */
+    font-weight: 400;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.game {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

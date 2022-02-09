@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="./style.css">
+    <script type="module" src="./scripts/script.js" defer></script>
+</head>
+<body>
+    <div class="app">
+        <div class="header">
+            <h2>✅ TIC TAC TOE ✅</h2>
+            <form action="none" id="user-input">
+                <input type="text" id="player1" placeholder="Player 1" value="Chintu">
+                <input type="text" id="player2" placeholder="Player 2" value="Pintu">
+                <input type="checkbox" id="checkbox">
+                <input type="button" value="Start Game" id="submit">
+            </form>
+        </div>
+        <div class="game">
+            <table class="game-zone" style="display: none;">
+                <tr>
+                    <td>
+                        <button data-row="0" data-col="0"></button>
+                    </td>
+                    <td>
+                        <button data-row="0" data-col="1"></button>
+                    </td>
+                    <td>
+                        <button data-row="0" data-col="2"></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button data-row="1" data-col="0"></button>
+                    </td>
+                    <td>
+                        <button data-row="1" data-col="1"></button>
+                    </td>
+                    <td>
+                        <button data-row="1" data-col="2"></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button data-row="2" data-col="0"></button>
+                    </td>
+                    <td>
+                        <button data-row="2" data-col="1"></button>
+                    </td>
+                    <td>
+                        <button data-row="2" data-col="2"></button>
+                    </td>
+                </tr>
+            </table>
+        </div>  
+    </div>
+</body>
+</html>
+
+
+<!-- First Player, Seconds Player Name, Submit No Entry Validation, 3rd Drop Down for X O is assigned to 0 -->
