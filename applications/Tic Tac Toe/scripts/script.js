@@ -8,7 +8,7 @@ const application = {
             p1: null,
             p2: null,
         },
-        game: [[-1,-1,-1],[-1,-1,-1],[-1,-1,-1]],
+        game: new Array(3).fill(0).map(() => new Array(3).fill(-1)),
         key: {
             A: null,
             B: null,
@@ -55,14 +55,30 @@ const application = {
 
         const result = gameLogic.checkStatus(this.data.game);
 
-        if(result == 1 || result == 0) {
+        
+        if(this.checkDraw()) {
+            let message = `No one wins! There is a draw`;
             
             setTimeout(() => {
                 this.resetGame();
             }, 10000);
 
             setTimeout( () => {
-                alert(`Player ${this.data.currentPlayer} wins!`);
+                alert(message);
+            }, 1);
+
+            return;
+        }
+        
+        if(result == 1 || result == 0) {
+            let message = `Player ${this.data.currentPlayer} wins!`;
+            
+            setTimeout(() => {
+                this.resetGame();
+            }, 10000);
+
+            setTimeout( () => {
+                alert(message);
             }, 1);
         }
     },
@@ -126,6 +142,20 @@ const application = {
             this.data.references.p2.classList.add('active');
             this.data.references.p1.classList.remove('active');
         }
+    },
+
+    checkDraw() {
+
+        for (let index = 0; index < this.data.game.length; index++) {
+            for (let indexIn = 0; indexIn < this.data.game[index].length; indexIn++) {
+                const element = this.data.game[index][indexIn];
+                if(element == -1) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }
 

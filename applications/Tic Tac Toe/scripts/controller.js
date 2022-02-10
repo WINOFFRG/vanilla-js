@@ -4,13 +4,12 @@ const gameLogic = {
 
         // Check Row and Col
         for(let idx = 0; idx < 3; idx++) {            
+
             if(data[0][idx] === data[1][idx] && data[1][idx] === data[2][idx] && data[0][idx] != -1) {
                 console.log('Row Check');
                 return data[0][idx];
-            }
-        }
+            }            
 
-        for(let idx = 0; idx < 3; idx++) {
             if(data[idx][0] === data[idx][1] && data[idx][1] === data[idx][2] && data[idx][0] != -1) {
                 console.log('Column Check');
                 return data[idx][0];
