@@ -156,9 +156,30 @@ const application = {
         }
 
         return true;
+    },
+
+    toggleModal() {
+
+        console.log('Modal');
+
+        const modal = document.querySelector('.alert-div');
+        const button = document.querySelector('.alert-button');
+
+        if(modal.classList.contains('hidden')) {
+            console.log('Need to Show Modal');
+        }
+        else {
+            modal.classList.add('hidden');
+            return;
+        }
+
+        button.addEventListener('click', () => {
+            this.toggleModal();
+        })
     }
 }
 
 window.addEventListener('load', () => {
     application.initialize();
+    application.toggleModal();
 });
