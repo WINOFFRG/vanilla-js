@@ -1,18 +1,17 @@
-document.querySelector('.input-text').addEventListener('keyup',
+document.querySelector('.input-text-d').addEventListener('keyup',
 deBouncer(fetchData)
 );
 
-// function onInput(event) {
-//     const data = event.target.value;
-//     deBouncer(fetchData)();
-// }
+document.querySelector('.input-text-t').addEventListener('keyup',
+throttling(fetchData)
+);
 
 let counter = 0;
 function fetchData() {
     console.log(counter++);
 }
 
-function deBouncer(callbackFn, delay = 1000) {    
+function deBouncer(callbackFn, delay = 1000) {
     let timerId = 0;
 
     return (...args) => {
@@ -21,5 +20,21 @@ function deBouncer(callbackFn, delay = 1000) {
         timerId = setTimeout( () => {
             callbackFn.apply(this, args);
         }, delay);
+    }
+}
+
+function throttling(callbackFn, delay = 1000) {
+    let timerId = 0;
+    let isWaiting = true;
+
+    return (...args) => {
+        // clearTimeout(timerId);
+
+        if(isWaiting) {           
+            timerId = setTimeout( () => {
+                callbackFn.apply(this, args);
+                isWaiting = false;
+            }, delay);
+        }
     }
 }

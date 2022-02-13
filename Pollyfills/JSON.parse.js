@@ -46,3 +46,8 @@ function myJSON() {
 let str = '{"name":"John","age":30,"city":"New York"}';
 console.log(myJSON().parse(str));
 // console.log(JSON.parse(str));
+
+
+/*
+    Alt: eval(`( ${str} )`)
+*/
