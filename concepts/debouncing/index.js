@@ -1,9 +1,11 @@
-document.querySelector('.input-text').addEventListener('keyup', onInput);
+document.querySelector('.input-text').addEventListener('keyup',
+deBouncer(fetchData)
+);
 
-function onInput(event) {
-    const data = event.target.value;
-    deBouncer(fetchData)();
-}
+// function onInput(event) {
+//     const data = event.target.value;
+//     deBouncer(fetchData)();
+// }
 
 let counter = 0;
 function fetchData() {
