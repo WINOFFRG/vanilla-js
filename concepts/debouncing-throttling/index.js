@@ -25,16 +25,18 @@ function deBouncer(callbackFn, delay = 1000) {
 
 function throttling(callbackFn, delay = 1000) {
     let timerId = 0;
-    let isWaiting = true;
+    let isWaiting = false;
 
     return (...args) => {
-        // clearTimeout(timerId);
+        if(!isWaiting) {           
+            callbackFn.apply(this, args);
+            isWaiting = true;
 
-        if(isWaiting) {           
             timerId = setTimeout( () => {
-                callbackFn.apply(this, args);
                 isWaiting = false;
             }, delay);
+
+
         }
     }
 }
