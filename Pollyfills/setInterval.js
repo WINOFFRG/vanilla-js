@@ -6,6 +6,7 @@ function timerPollyfill() {
         currentId++;
 
         function onLoop() {
+
             timeoutIds[currentId] = setTimeout(() => {
                 callback(...args);  
 
@@ -33,6 +34,10 @@ function timerPollyfill() {
 const timer = timerPollyfill();
 let count = 0;
 
-timer.mySetInterval( () => {
+const id = timer.mySetInterval( () => {
     console.log(count++);
 }, 1000);
+
+setTimeout( () => {
+    timer.myClearInterval(id);
+}, 4000);
