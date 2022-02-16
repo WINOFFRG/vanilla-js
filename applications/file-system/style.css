@@ -1,0 +1,56 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+.contents {
+    display: flex;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.folder-open {
+    background-image: url(./assets/folder-open.svg);
+    background-size: 24px;
+    background-position: 0;
+    background-repeat: no-repeat;
+    padding-right: 10px;
+    width: 16px;
+    height: 22px;
+    line-height: inherit!important;
+    display: inline-block;
+    vertical-align: top;
+    flex-shrink: 0;
+}
+
+.folder-close  {
+    background-image: url(./assets/folder.svg);
+    background-size: 24px;
+    background-position: 0;
+    background-repeat: no-repeat;
+    padding-right: 10px;
+    width: 16px;
+    height: 22px;
+    line-height: inherit!important;
+    display: inline-block;
+    vertical-align: top;
+    flex-shrink: 0;
+}
+
+.file {
+    background-color: lightblue;
+    padding: 4px 8px;
+    margin: 2px 0;
+    border-radius: 8px;
+    display: ;
+}
+
+.name {
+    background-color: yellow;
+    padding: 4px 8px;
+    margin: 4px 0;
+    border-radius: 8px;
+}

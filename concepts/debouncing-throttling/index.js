@@ -28,6 +28,7 @@ function throttling(callbackFn, delay = 1000) {
     let isWaiting = false;
 
     return (...args) => {
+
         if(!isWaiting) {           
             callbackFn.apply(this, args);
             isWaiting = true;
@@ -35,8 +36,6 @@ function throttling(callbackFn, delay = 1000) {
             timerId = setTimeout( () => {
                 isWaiting = false;
             }, delay);
-
-
         }
     }
 }
